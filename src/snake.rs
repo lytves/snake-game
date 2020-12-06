@@ -2,17 +2,15 @@ use std::collections::LinkedList;
 use piston_window::{Context, G2d};
 use piston_window::types::Color;
 
-use draw::draw_block;
 use crate::draw::draw_block;
-use std::arch::mips::break_;
 
 const SNAKE_COLOR: Color = [0.00, 0.80, 0.00, 1.0];
 #[derive(Copy, Clone, PartialEq)]
 pub enum Direction {
     Up,
     Down,
-    Right,
-    Left
+    Left,
+    Right
 }
 
 impl Direction {
@@ -90,7 +88,7 @@ impl Snake {
             },
             Direction::Left => Block {
                 x: last_x - 1,
-                y: last_y1,
+                y: last_y,
             },
             Direction::Right => Block {
                 x: last_x + 1,
@@ -116,8 +114,8 @@ impl Snake {
         }
 
         match moving_dir {
-            Direction::Up => (head_x, head_y + 1),
-            Direction::Down => (head_x, head_y - 1),
+            Direction::Up => (head_x, head_y - 1),
+            Direction::Down => (head_x, head_y + 1),
             Direction::Left => (head_x - 1, head_y),
             Direction::Right => (head_x + 1, head_y),
         }
