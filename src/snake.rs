@@ -38,7 +38,7 @@ pub struct Snake {
 }
 
 impl Snake {
-    pub fn new(x: i32, y: 32) -> Snake {
+    pub fn new(x: i32, y: i32) -> Snake {
         let mut body: LinkedList<Block> = LinkedList::new();
         body.push_back(Block {
             x: x + 2,
