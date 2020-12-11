@@ -5,6 +5,8 @@ use piston_window::types::Color;
 use crate::draw::draw_block;
 
 const SNAKE_COLOR: Color = [0.00, 0.80, 0.00, 1.0];
+const SNAKE_HEAD_COLOR: Color = [1.0, 0.5, 0.25, 1.0];
+
 #[derive(Copy, Clone, PartialEq)]
 pub enum Direction {
     Up,
@@ -59,8 +61,14 @@ impl Snake {
     }
 
     pub fn draw(&self, con: &Context, g: &mut G2d) {
+        let (head_x, head_y): (i32, i32) = self.head_position();
+
         for block in &self.body {
-            draw_block(SNAKE_COLOR, block.x, block.y, con, g);
+            if head_x == block.x && head_y == block.y {
+                draw_block(SNAKE_HEAD_COLOR, block.x, block.y, con, g);
+            } else {
+                draw_block(SNAKE_COLOR, block.x, block.y, con, g);
+            }
         }
     }
 
